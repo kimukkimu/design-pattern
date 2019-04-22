@@ -4,18 +4,18 @@ from Iterator import Iterator
 
 class BookShelf(Aggregate):
     def  __init__(self):
-        self.__books = []
-        self.__last = 0
+        self._books = []
+        self._last = 0
 
     def getBookat(self, index: int) -> Book:
-        return self.__books[index]
+        return self._books[index]
 
     def appendBook(self, book: Book) -> None:
-        self.__books.append(book)
-        self.__last += 1
+        self._books.append(book)
+        self._last += 1
 
     def getLength(self) -> int:
-        return self.__last
+        return self._last
 
     def iterator(self):
         return BookShelfIterator(self)
@@ -24,18 +24,18 @@ class BookShelf(Aggregate):
 
 class BookShelfIterator(Iterator):
     def __init__(self, bookShelf :BookShelf):
-        self.__bookShelf = bookShelf
-        self.__index = 0
+        self._bookShelf = bookShelf
+        self._index = 0
 
     def hasNext(self) -> bool:
-        if (self.__index < self.__bookShelf.getLength()):
+        if (self._index < self._bookShelf.getLength()):
             return True
         else:
             return False
 
     def next(self) -> Book:
-        book = self.__bookShelf.getBookat(self.__index)
-        self.__index += 1
+        book = self._bookShelf.getBookat(self._index)
+        self._index += 1
         return book
 
 
